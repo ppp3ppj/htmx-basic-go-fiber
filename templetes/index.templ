@@ -1,18 +1,30 @@
 package templates
 
-templ Index() {
+import "github.com/ppp3ppj/htmx-basic-go-fiber/models"
+
+templ Index(users []*models.User) {
 <!doctype html>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-      <script src="https://unpkg.com/htmx.org/dist/ext/class-tools.js"></script>
+      <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 
       <title>Basic HTMX GO-FIBER</title>
     </head>
     <body>
-        Hello World
+        <form hx-swap="outerHTML" hx-target="#agentContact" hx-post="/foo">
+            <div>
+                <input type="text" name="nameStr"/>
+                <button type="submit">Click Me!</button> 
+            </div>
+        </form>
+        <div id="agentContact">
+            for _, user := range users {
+                @UserDataDiv(user)
+            }
+        </div>
     </body>
   </html>
 }

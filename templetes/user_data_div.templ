@@ -1,0 +1,9 @@
+package templates
+
+import "github.com/ppp3ppj/htmx-basic-go-fiber/models"
+import "strconv"
+
+
+templ UserDataDiv(user *models.User) {
+    <div hx-get={ "/foo/" + strconv.Itoa(user.Id)  }>{ user.Name }</div>
+}
